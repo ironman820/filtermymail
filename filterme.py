@@ -21,6 +21,7 @@ def email_to_pandas(client: IMAPClient, folder: str = "INBOX") -> pd.DataFrame:
     #     print(message.get_subject())
     #     break
     emails["uid"] = emails.index
+    emails["message"] = emails.iloc[:, 1]
     print(emails)
     # emails["message"].apply(
     #     lambda x: pd.Series(breakout_email_columns(x), index=["subject"]), axis=1
