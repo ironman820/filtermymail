@@ -20,7 +20,7 @@ def email_to_pandas(client: IMAPClient, folder: str = "INBOX") -> pd.DataFrame:
     #     )
     #     print(message.get_subject())
     #     break
-    emails["b'BODY[]'"].apply(
+    emails[b"BODY[]"].apply(
         lambda x: pd.Series(breakout_email_columns(x), index=["subject"]), axis=1
     )
     return emails
