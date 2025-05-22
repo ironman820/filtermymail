@@ -6,7 +6,9 @@ import dotenv
 import email
 import os
 import pandas as pd
-import pyzmail
+
+# import pyzmail
+import re
 
 
 def email_to_pandas(client: IMAPClient, folder: str = "INBOX") -> pd.DataFrame:
