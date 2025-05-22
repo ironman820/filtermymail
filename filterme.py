@@ -42,7 +42,7 @@ def breakout_email_columns(raw_message) -> list:
         except UnicodeDecodeError:
             print(f"Could not decode header for message: {subject}")
     email_from = re.match("<.*>", message.get("From"))
-    return [subject, message.get("From")]
+    return [subject, email_from]
 
 
 def final_logout(client: IMAPClient) -> None:
