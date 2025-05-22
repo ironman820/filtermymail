@@ -43,7 +43,7 @@ def breakout_email_columns(raw_message) -> list:
             print(
                 f"Could not decode header for message: {subject}, from: {message.get('From', 'Unknown')}"
             )
-    email_from = message.get("From", "unknown")
+    email_from = message.get("From", "Unknown")
     email_match = re.search(r"<.*>", email_from)
     if email_match:
         email_from = email_match.group()[1:-1]
