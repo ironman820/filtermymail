@@ -41,12 +41,14 @@ def breakout_email_columns(raw_message) -> list:
             subject = subject.decode()
         except UnicodeDecodeError:
             print(f"Could not decode header for message: {subject}")
-    email_from = re.search(r"<.*>", message.get("From"))
+    email_from = re.search(r"<.*>", message.get("From", "unknown"))
     if email_from:
         email_from = email_from.group()[1:-1]
     else:
         email_from = message.get("From")
     date = message.get("Date")
+    if date is None:
+        date = "Today"
     date_match = re.search(r"[+-]", date)
     if date_match:
         date = date[: date_match.start() - 1]
