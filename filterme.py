@@ -44,6 +44,8 @@ def breakout_email_columns(raw_message) -> list:
     email_from = re.search(r"<.*>", message.get("From"))
     if email_from:
         email_from = email_from.group()
+    else:
+        email_from = message.get("From")
     return [subject, email_from]
 
 
