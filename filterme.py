@@ -37,7 +37,7 @@ def breakout_email_columns(raw_message) -> list:
     subject = decode_header(message["subject"])
     if isinstance(subject, bytes):
         subject = subject.decode()
-    return [subject, decode_header(message["From"])]
+    return [subject, message.get("From")]
 
 
 def final_logout(client: IMAPClient) -> None:
