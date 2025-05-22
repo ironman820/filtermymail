@@ -20,7 +20,15 @@ def email_to_pandas(client: IMAPClient, folder: str = "INBOX") -> pd.DataFrame:
     #     )
     #     print(message.get_subject())
     #     break
+    emails["b'BODY[]'"].apply(
+        lambda x: pd.Series(breakout_email_columns(x), index=["subject"]), axis=1
+    )
     return emails
+
+
+def breakout_email_columns(raw_message) -> list[str]:
+    message: pyzmail.PyzMessage = pyzmail.PyzMessage.factory(raw_message)
+    return [message.get_subject()]
 
 
 def final_logout(client: IMAPClient) -> None:
