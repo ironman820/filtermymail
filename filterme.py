@@ -23,7 +23,7 @@ def email_to_pandas(client: IMAPClient, folder: str = "INBOX") -> pd.DataFrame:
     emails = emails.drop(emails.iloc[:, :1].columns.to_list(), axis="columns")
     emails = emails.reset_index()
     emails.columns = ["uid", "message"]
-    emails["subject"] = emails["message"].apply(
+    emails["subject", "from"] = emails["message"].apply(
         lambda x: pd.Series(breakout_email_columns(x), index=["subject"])
     )
     return emails
@@ -31,7 +31,7 @@ def email_to_pandas(client: IMAPClient, folder: str = "INBOX") -> pd.DataFrame:
 
 def breakout_email_columns(raw_message) -> list[str]:
     message: pyzmail.PyzMessage = pyzmail.PyzMessage.factory(raw_message)
-    return [message.get_subject()]
+    return [message.get_subject(), message.get_address("from")]
 
 
 def final_logout(client: IMAPClient) -> None:
