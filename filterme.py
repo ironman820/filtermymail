@@ -40,7 +40,9 @@ def breakout_email_columns(raw_message) -> list:
         try:
             subject = subject.decode()
         except UnicodeDecodeError:
-            print(f"Could not decode header for message: {subject}")
+            print(
+                f"Could not decode header for message: {subject}, from: {message.get('From')}"
+            )
     email_from = re.search(r"<.*>", message.get("From", "unknown"))
     if email_from:
         email_from = email_from.group()[1:-1]
