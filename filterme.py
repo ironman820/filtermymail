@@ -52,7 +52,7 @@ def breakout_email_columns(raw_message) -> list:
     date_match = re.search(r"[+-]", date)
     if date_match:
         date = date[: date_match.start() - 1]
-    return [subject, email_from, message.get("Date")]
+    return [subject, email_from, date]
 
 
 def final_logout(client: IMAPClient) -> None:
