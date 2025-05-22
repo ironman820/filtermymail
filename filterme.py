@@ -1,7 +1,9 @@
+from email.header import decode_header
 from imapclient import IMAPClient, exceptions
 
 import atexit
 import dotenv
+import email
 import os
 import pandas as pd
 import pyzmail
@@ -30,8 +32,9 @@ def email_to_pandas(client: IMAPClient, folder: str = "INBOX") -> pd.DataFrame:
 
 
 def breakout_email_columns(raw_message) -> list:
-    message: pyzmail.PyzMessage = pyzmail.PyzMessage.factory(raw_message)
-    return [message.get_subject(), message.get_address("from")]
+    # message: pyzmail.PyzMessage = pyzmail.PyzMessage.factory(raw_message)
+    message = email.message_from_string(raw_message)
+    return [decode_header(message["Subject"]), decode_header(message["From"])]
 
 
 def final_logout(client: IMAPClient) -> None:
