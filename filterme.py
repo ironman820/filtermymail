@@ -10,7 +10,7 @@ import pyzmail
 def email_to_pandas(client: IMAPClient, folder: str = "INBOX") -> pd.DataFrame:
     client.select_folder(folder, True)
     uids: list = client.search()
-    raw_messages: dict[int, dict] = client.fetch(uids[0], data=["BODY[]"])
+    raw_messages: dict[int, dict] = client.fetch(uids, data=["BODY[]"])
     emails: pd.DataFrame = pd.DataFrame.from_dict(raw_messages)
     print(emails)
     exit()
