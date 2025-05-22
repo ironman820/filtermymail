@@ -29,7 +29,7 @@ def email_to_pandas(client: IMAPClient, folder: str = "INBOX") -> pd.DataFrame:
     return emails
 
 
-def breakout_email_columns(raw_message) -> list[str]:
+def breakout_email_columns(raw_message) -> list:
     message: pyzmail.PyzMessage = pyzmail.PyzMessage.factory(raw_message)
     return [message.get_subject(), message.get_address("from")]
 
