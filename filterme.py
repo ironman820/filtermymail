@@ -65,6 +65,7 @@ def main_process() -> None:
     )
     emails: pd.DataFrame = email_to_pandas(client)
     print(emails)
+    print(emails["subject"])
 
 
 if __name__ == "__main__":
