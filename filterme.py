@@ -46,8 +46,7 @@ def breakout_email_columns(raw_message) -> list:
         email_from = email_from.group()[1:-1]
     else:
         email_from = message.get("From")
-    print(message)
-    return [subject, email_from]
+    return [subject, email_from, message.get("Date")]
 
 
 def final_logout(client: IMAPClient) -> None:
