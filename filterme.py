@@ -1,6 +1,8 @@
 from imapclient import IMAPClient, exceptions
 
 import atexit
+import dotenv
+import os
 import pandas as pd
 import pyzmail
 
@@ -43,7 +45,13 @@ def logout(client: IMAPClient):
 
 
 def main_process() -> None:
-    client: IMAPClient = login("", "", "", False)
+    dotenv.load_dotenv("settings.env")
+    client: IMAPClient = login(
+        os.getenv("email_host", "badhost"),
+        os.getenv("email_user", "user"),
+        os.getenv("email_password", "badpass"),
+        False,
+    )
     emails: pd.DataFrame = email_to_pandas(client)
     print(emails)
 
