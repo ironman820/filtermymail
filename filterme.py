@@ -36,7 +36,7 @@ def breakout_email_columns(raw_message) -> list:
     message = email.message_from_bytes(raw_message)
     subject = decode_header(message["subject"])[0][0]
     if isinstance(subject, bytes):
-        subject = subject.decode()
+        subject = subject.decode("utf")
     return [subject, message.get("From")]
 
 
