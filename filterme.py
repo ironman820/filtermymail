@@ -46,6 +46,10 @@ def breakout_email_columns(raw_message) -> list:
         email_from = email_from.group()[1:-1]
     else:
         email_from = message.get("From")
+    date = message.get("Date")
+    date_match = re.search(r"[+-]", date)
+    if date_match:
+        date = date[: date_match.start() - 1]
     return [subject, email_from, message.get("Date")]
 
 
