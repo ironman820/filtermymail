@@ -39,7 +39,7 @@ def breakout_email_columns(raw_message) -> list:
         try:
             subject = subject.decode()
         except UnicodeDecodeError:
-            pass
+            print(f"Could not decode header for message: {subject}")
     return [subject, message.get("From")]
 
 
