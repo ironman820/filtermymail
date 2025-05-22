@@ -38,7 +38,7 @@ def breakout_email_columns(raw_message) -> list:
     if isinstance(subject, bytes):
         try:
             subject = subject.decode()
-        finally:
+        except UnicodeDecodeError:
             pass
     return [subject, message.get("From")]
 
