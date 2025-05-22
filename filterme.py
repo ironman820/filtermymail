@@ -6,8 +6,7 @@ import dotenv
 import email
 import os
 import pandas as pd
-
-# import pyzmail
+import pyzmail
 import re
 
 
@@ -42,6 +41,7 @@ def breakout_email_columns(raw_message) -> list:
             subject = subject.decode()
         except UnicodeDecodeError:
             print(f"Could not decode header for message: {subject}")
+    email_from = re.search("/<[^>]*>/", message.get("From"))
     return [subject, message.get("From")]
 
 
