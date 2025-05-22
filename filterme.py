@@ -35,8 +35,8 @@ def breakout_email_columns(raw_message) -> list:
     # message: pyzmail.PyzMessage = pyzmail.PyzMessage.factory(raw_message)
     message = email.message_from_bytes(raw_message)
     subject = decode_header(message["subject"])[0][0]
-    if isinstance(subject, bytes):
-        subject = subject.decode("utf")
+    # if isinstance(subject, bytes):
+    #     subject = subject.decode()
     return [subject, message.get("From")]
 
 
