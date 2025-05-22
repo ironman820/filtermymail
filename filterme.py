@@ -13,7 +13,6 @@ def email_to_pandas(client: IMAPClient, folder: str = "INBOX") -> pd.DataFrame:
     raw_messages: dict[int, dict] = client.fetch(uids, data=["BODY[]"])
     emails: pd.DataFrame = pd.DataFrame.from_dict(raw_messages, "index")
     print(emails)
-    exit()
     # emails["uid"] = emails[0]
     # emails.drop([0], axis="columns", inplace=True)
     # for uid in uids:
