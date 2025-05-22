@@ -22,7 +22,7 @@ def email_to_pandas(client: IMAPClient, folder: str = "INBOX") -> pd.DataFrame:
     #     break
     emails["uid"] = emails.index
     emails["message"] = emails.iloc[:, 1]
-    emails = emails.drop(emails.iloc[:, :1].columns.to_list(), axis="columns")
+    emails = emails.drop(emails.iloc[:, :2].columns.to_list(), axis="columns")
     emails = emails.reset_index(drop=True)
     print(emails)
     # emails["message"].apply(
